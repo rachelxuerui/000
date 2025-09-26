@@ -22,23 +22,21 @@
   // Delegated hover + tooltip
   // =========================
 
-  // Use mousemove on the container and react only when target is a .cell img
-  const H_OFFSET = 12;  // px offset from cursor
-  const V_OFFSET = 12;
+  // use mousemove on the container and react only when target is a .cell img
+  const H_OFFSET = 3;  // px offset from cursor
+  const V_OFFSET = 3;
 
   // helper to show/hide tooltip
   const showTooltip = (text, x, y) => {
     tooltip.textContent = text || '';
     tooltip.style.opacity = '1';
+
     // tooltip is fixed — use clientX/clientY
-    // optionally clamp so it doesn't go off-screen
     const vw = document.documentElement.clientWidth;
     const vh = document.documentElement.clientHeight;
 
-    // Pre-measure to clamp within viewport
     tooltip.style.left = '-9999px';
     tooltip.style.top = '-9999px';
-    // Force layout to get size
     const { width: tw, height: th } = tooltip.getBoundingClientRect();
 
     const nx = Math.min(Math.max(x + H_OFFSET, 0), vw - tw - 2);
@@ -83,9 +81,10 @@
     if (!cell || !container.contains(cell)) return;
     if (!cell.contains(e.relatedTarget)) cell.classList.remove('is-hover');
   });
-    // CRUCIAL: Hide during fast scroll / wheel / touch so it never lingers
+
+  // hiding tooltip during fast scroll / wheel / touch so it never lingers
   const hideOnScroll = () => {
-    hoveringImg = null; // we’re not confidently over an img anymore
+    hoveringImg = null; 
     hideTooltip();
   };
   container.addEventListener('scroll', hideOnScroll, { passive: true });
