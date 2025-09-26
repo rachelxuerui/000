@@ -21,16 +21,17 @@
   // =========================
   // Delegated hover + tooltip
   // =========================
+
   // Use mousemove on the container and react only when target is a .cell img
   const H_OFFSET = 12;  // px offset from cursor
   const V_OFFSET = 12;
 
-  // Helper to show/hide tooltip
+  // helper to show/hide tooltip
   const showTooltip = (text, x, y) => {
     tooltip.textContent = text || '';
     tooltip.style.opacity = '1';
-    // Tooltip is fixed — use clientX/clientY
-    // Optionally clamp so it doesn't go off-screen
+    // tooltip is fixed — use clientX/clientY
+    // optionally clamp so it doesn't go off-screen
     const vw = document.documentElement.clientWidth;
     const vh = document.documentElement.clientHeight;
 
@@ -51,14 +52,14 @@
     tooltip.style.opacity = '0';
   };
 
-  // Track whether we are currently over an image
+  // track whether we are currently over an image
   let hoveringImg = null;
 
   container.addEventListener('mousemove', (e) => {
     const img = e.target.closest('.cell img');
     if (img && container.contains(img)) {
       hoveringImg = img;
-      // Use dataset name or fallback to alt
+      // use dataset name or fallback to alt
       const label = img.dataset.name || img.getAttribute('alt') || '';
       showTooltip(label, e.clientX, e.clientY);
     } else if (hoveringImg) {
@@ -68,10 +69,10 @@
     }
   }, { passive: true });
 
-  // Also hide when leaving the container entirely
+  // hide tooltip when cursor leaves container
   container.addEventListener('mouseleave', hideTooltip);
 
-  // Optional: add a visual hover class via delegation (covers clones)
+  // add a visual hover class via delegation (covers clones)
   container.addEventListener('mouseover', (e) => {
     const cell = e.target.closest('.cell');
     if (!cell || !container.contains(cell)) return;
@@ -82,4 +83,17 @@
     if (!cell || !container.contains(cell)) return;
     if (!cell.contains(e.relatedTarget)) cell.classList.remove('is-hover');
   });
+    // CRUCIAL: Hide during fast scroll / wheel / touch so it never lingers
+  const hideOnScroll = () => {
+    hoveringImg = null; // we’re not confidently over an img anymore
+    hideTooltip();
+  };
+  container.addEventListener('scroll', hideOnScroll, { passive: true });
+  container.addEventListener('wheel', hideOnScroll, { passive: true });
+  container.addEventListener('touchmove', hideOnScroll, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) hideTooltip();
+  });
+  window.addEventListener('blur', hideTooltip);
+
 })();
