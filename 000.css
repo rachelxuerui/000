@@ -1,9 +1,6 @@
 @font-face {
-  font-family: 'gerstner'; /* Give your font a name */
-  src: url('Gerstner-ProgrammRegular.otf') format('opentype'); /* Specify the path to your .otf file and format */
-  /* Optional: Add font-weight and font-style if you have different variants */
-  /* font-weight: normal; */
-  /* font-style: normal; */
+  font-family: 'gerstner';
+  src: url('Gerstner-ProgrammRegular.otf') format('opentype');
 }
 
 :hover {
@@ -16,8 +13,8 @@ body {
   font-family: 'Gerstner';
   display: flex;
   height: 100vh;
-  overflow: hidden; 
-  color: rgba(0,0,0,0.5);
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.5);
   font-size: 15px;
   line-height: 1;
 }
@@ -31,35 +28,26 @@ a {
   opacity: 0;
 }
 
-.y {
+.y, .x, .z {
   position: fixed;
-  /* top: 0;
-  left: 24px; */
-  width: 1px;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   z-index: 9999;
+}
+
+.y {
+  width: 1px;
+  transform-origin: top left;
 }
 
 .x {
-  position: fixed;
-  /* top: 25px;
-  left: 0px; */
   height: 1px;
-  width: 100vw;
-  background-color: rgba(0,0,0,0.1);
-  z-index: 9999;
+  transform-origin: top left;
 }
 
 .z {
-  position: fixed;
-  transform-origin: 0% 0%;
-  /* left: 0px; */
   height: 1px;
-  width: 100vw;
-  transform: rotate(45deg);
-  background-color: rgba(0,0,0,0.1);
-  z-index: 9999;
+  transform-origin: top left;
+  transform: rotate(-45deg);
 }
 
 /* leftmost side panel */
@@ -69,7 +57,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   background: #fff;
-  border-right: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
   padding: 24px;
   box-sizing: border-box;
   position: sticky;
@@ -81,27 +69,26 @@ a {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  min-height: 0; 
+  min-height: 0;
   gap: 12px;
   font-variant-numeric: tabular-nums;
 }
 
 .sidebar li {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    align-items: center;
-    height: 24px;
-    padding: 2px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  height: 24px;
+  padding: 2px 0;
 }
 
-.sidebar li:hover{
-    color: rgba(0,0,0,0.25);
-    /* background-color: #7487A5; */
+.sidebar li:hover {
+  color: rgba(0, 0, 0, 0.25);
 }
 
 .number {
-    width: 30px;
+  width: 30px;
 }
 
 .sidebar h1 {
@@ -120,55 +107,48 @@ a {
 }
 
 .zeroes {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5px;
 }
 
 .zeroes-top {
-    display: flex;
-    flex-direction: row;
-    gap: 3px;
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
 }
-
-
-/* Right scrollable content */
 
 .content {
   flex: 1 1 auto;
   height: 100vh;
   min-height: 0;
   overflow-y: auto;
-  /* padding: 20px; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr); /* force 3 equal rows */
+  grid-template-rows: repeat(3, 1fr);
 }
 
 .cell {
   aspect-ratio: 1 / 1;
-  border: dotted rgba(0,0,0,0.1); 
+  border: thin dotted rgba(0, 0, 0, 0.1);
   border-width: 1px 1px 1px 0;
-  border-width: thin;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px; /* inner padding for breathing room */
+  padding: 20px;
   box-sizing: border-box;
 }
 
 .cell:hover {
   opacity: 75%;
-  border-color: rgba(0,0,0,0.1); /* highlight border on hover */
 }
 
 .cell img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* keep aspect ratio */
+  object-fit: contain;
 }
 
-/* Tooltip styling */
 .tooltip {
   position: fixed;
   pointer-events: none;
@@ -180,18 +160,8 @@ a {
   z-index: 9999;
 }
 
-
-/* space after images
-.content::after {
-  content: "";
-  flex-basis: 100%; 
-  height: 20px;
-} */
-
-/* project-pages */
-
 .townhouse-in-tribeca {
   display: block;
   z-index: 9999;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(255, 255, 255, 0.9);
 }
