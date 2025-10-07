@@ -44,29 +44,27 @@
            el.classList.contains('cell');
   };
 
-  document.addEventListener('click', (e) => {
-    if (isClickable(e.target)) {
-      const link = e.target.closest('a');
-      if (link && link.href) {
-        e.preventDefault();
-
-        // Show lines briefly before navigating
-        isClickActive = true;
-        hideTooltip();
-        showLines(e.clientX, e.clientY);
-
-        setTimeout(() => {
-          window.location.href = link.href;
-        }, 10);
-      }
-    }
-  });
-
   document.addEventListener('mousedown', (e) => {
-    if (isClickable(e.target)) {
-      // Skip if it's a link (handled by click event)
-      if (e.target.closest('a')) return;
+    const link = e.target.closest('a');
+    if (link && link.href) {
+      e.preventDefault();
 
+      // Show lines during the click
+      isClickActive = true;
+      hideTooltip();
+      showLines(e.clientX, e.clientY);
+
+      // Navigate on mouseup
+      const navigateOnMouseUp = () => {
+        window.location.href = link.href;
+        document.removeEventListener('mouseup', navigateOnMouseUp);
+      };
+      document.addEventListener('mouseup', navigateOnMouseUp);
+      return;
+    }
+
+    // Check if it's clickable or inside a clickable element
+    if (isClickable(e.target) || e.target.closest('.cell')) {
       isClickActive = true;
       hideTooltip();
       showLines(e.clientX, e.clientY);
