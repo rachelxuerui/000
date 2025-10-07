@@ -76,20 +76,20 @@ a {
   flex-direction: column;
   overflow-y: auto;
   min-height: 0;
-  gap: 12px;
+  gap: 18px;
   font-variant-numeric: tabular-nums;
 }
 
 .sidebar li {
   display: flex;
   flex-direction: row;
-  gap: 12px;
+  gap: 18px;
   align-items: center;
   height: 24px;
   padding: 3px 0;
 }
 
-.sidebar li:hover {
+.sidebar a:hover {
   opacity: 0.5;
 }
 
@@ -112,12 +112,12 @@ a {
 .sidebar ul {
   list-style: none;
   padding: 0;
-  margin: 0 0 40px 0;
+  /* margin: 0 0 40px 0; */
 }
 
-.sidebar .contact {
-  margin-top: 20px;
-  line-height: 1.6;
+.sidebar contact {
+  display: flex;
+  flex-direction: column;
 }
 
 .zeroes {
