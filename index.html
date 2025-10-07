@@ -10,17 +10,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class = 'lines' id = 'lines'>
+    <div class = 'y' id = 'y'></div>
+    <div class = 'x' id = 'x'></div>
+    <div class = 'z' id = 'z'></div>
+  </div>
   <aside class="sidebar">
     <div class = "sidebar-top">
-    <div class = "logo">
-    <div class = "zeroes">
-    <div class = "zeroes-top">
-    <div class = "zero">0</div><div class = "zero">0</div>
-    </div>
-    <div class = "zero">0</div>
-    </div>
-    <h1>Architecture PLLC</h1>
-    </div>
+    <a href = 'index.html'>
+      <div class = "zeroes" id = 'logo'>
+      <div class = "zeroes-top">
+      <div class = "zero">0</div><div class = "zero">0</div>
+      </div>
+      <div class = "zero">0</div>
+      </div>
+    </a>
     <ul>
         <li><div class = "number">001</div><div>1000 Miles x 50 ft</div></li>
         <li><div class = "number">002</div><div>Apartment in Gramercy</div></li>
@@ -28,7 +32,7 @@
         <li><div class = "number">004</div><div>Apartment in Gramercy II</div></li>
         <li><div class = "number">005</div><div>Project EATS</div></li>
         <li><div class = "number">006</div><div>Furiture for Two Friends</div></li>
-        <li><div class = "number">007</div><div>Townhouse in Tribeca</div></li>
+        <a href = 'townhouse-in-tribeca.html'><li><div class = "number">007</div><div>Townhouse in Tribeca</div></li></a>
         <li><div class = "number">008</div><div>House in Sydney</div></li>
         <li><div class = "number">009</div><div>Apartment on the UWS</div></li>
         <li><div class = "number">010</div><div>Townhouse in Tribeca II</div></li>
@@ -74,7 +78,7 @@
     <img src="photo.png" alt="Project 1" data-name="project name">
     </div>
 
-    <div id="tooltip" class="tooltip"></div>
+        <div id="tooltip" class="tooltip"></div>
     
   </main>
    <script src="000.js"></script>
