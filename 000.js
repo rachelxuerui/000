@@ -44,8 +44,29 @@
            el.classList.contains('cell');
   };
 
+  document.addEventListener('click', (e) => {
+    if (isClickable(e.target)) {
+      const link = e.target.closest('a');
+      if (link && link.href) {
+        e.preventDefault();
+
+        // Show lines briefly before navigating
+        isClickActive = true;
+        hideTooltip();
+        showLines(e.clientX, e.clientY);
+
+        setTimeout(() => {
+          window.location.href = link.href;
+        }, 10);
+      }
+    }
+  });
+
   document.addEventListener('mousedown', (e) => {
     if (isClickable(e.target)) {
+      // Skip if it's a link (handled by click event)
+      if (e.target.closest('a')) return;
+
       isClickActive = true;
       hideTooltip();
       showLines(e.clientX, e.clientY);
