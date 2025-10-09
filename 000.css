@@ -4,7 +4,6 @@
 }
 
 :hover {
-  cursor: pointer;
   transition: all 0.1s ease;
 }
 
@@ -27,6 +26,10 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
 }
 
 .lines {
@@ -59,12 +62,12 @@ a {
 /* leftmost side panel */
 .sidebar {
   display: flex;
-  flex: 0 0 25%;
+  width: 25%;
   flex-direction: column;
   justify-content: space-between;
   background: #fff;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 24px;
+  padding: 48px;
   box-sizing: border-box;
   position: sticky;
   top: 0;
@@ -112,7 +115,6 @@ a {
 .sidebar ul {
   list-style: none;
   padding: 0;
-  /* margin: 0 0 40px 0; */
 }
 
 .sidebar contact {
@@ -175,8 +177,104 @@ a {
   z-index: 9999;
 }
 
-.townhouse-in-tribeca {
-  display: block;
-  z-index: 9999;
+.project-overlay {
+  position: fixed;
+  top: 0;
+  left: 25%;
+  right: 0;
+  bottom: 0;
   background-color: rgba(255, 255, 255, 0.9);
+  z-index: 100000;
+  color: black;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.project-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.project-content {
+  position: relative;
+  z-index: 10001;
+  pointer-events: auto;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.project-content h1 {
+  font-size: 18px;
+  font-weight: normal;
+  margin: 0 0 24px 0;
+}
+
+.project-content p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 600px;
+}
+
+.close-overlay {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 48px;
+  line-height: 1;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-overlay:hover {
+  opacity: 0.5;
+}
+
+.project-link {
+  cursor: pointer;
+}
+
+.project-content-left ul {
+  list-style: none;
+  padding: 0;
+}
+
+.project-content-left li {
+  padding: 3px 0;
+}
+
+.project-content-left {
+  width: 25%;
+  padding: 48px;
+  height: 100vh;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
